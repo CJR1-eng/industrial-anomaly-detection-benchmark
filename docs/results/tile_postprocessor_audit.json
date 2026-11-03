@@ -1,0 +1,139 @@
+{
+  "determinism": {
+    "seed": 42,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "allow_tf32_matmul": false,
+    "allow_tf32_cudnn": false,
+    "deterministic_algorithms": true,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  },
+  "steps": {
+    "A_pipeline": {
+      "pre_fit_dataset_item": {
+        "name": "pre-fit dataset item",
+        "shape": [
+          3,
+          840,
+          840
+        ],
+        "min": 0.062745101749897,
+        "max": 1.0,
+        "mean": 0.4142707586288452,
+        "std": 0.1225573942065239
+      },
+      "post_fit_batch": {
+        "name": "post-fit dataloader batch",
+        "shape": [
+          8,
+          3,
+          256,
+          256
+        ],
+        "min": 0.05781865492463112,
+        "max": 1.0,
+        "mean": 0.4233461916446686,
+        "std": 0.12146708369255066
+      },
+      "explicit_pipeline": {
+        "name": "explicit pipeline",
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "min": -1.8069372177124023,
+        "max": 1.7142599821090698,
+        "mean": -0.15287768840789795,
+        "std": 0.5279556512832642
+      },
+      "dataset_augmentations_after_fit": "Resize(size=[256, 256], interpolation=bilinear, antialias=True)",
+      "verdict": {
+        "batch_shape": [
+          8,
+          3,
+          256,
+          256
+        ],
+        "batch_min": 0.05781865492463112,
+        "batch_max": 1.0,
+        "explicit_min": -1.8069372177124023,
+        "explicit_max": 1.7142599821090698,
+        "max_abs_diff_batch_vs_explicit": 1.8781486749649048,
+        "batch_looks_normalized": false
+      }
+    },
+    "A4_model_input_effect": {
+      "score_with_dataloader_batch": 77.68449401855469,
+      "score_with_explicit_pipeline": 116.71936798095703,
+      "anomaly_map_max_abs_diff": 39.154823303222656
+    },
+    "B_postprocessor_state": {
+      "enable_normalization": true,
+      "enable_thresholding": true,
+      "image_sensitivity": 0.5,
+      "pixel_sensitivity": 0.5,
+      "image_min": 17.117992401123047,
+      "image_max": 65.49990844726562,
+      "image_threshold": 65.49990844726562,
+      "pixel_min": 7.46892786026001,
+      "pixel_max": 65.49990844726562,
+      "pixel_threshold": 65.49990844726562,
+      "normalized_image_threshold": 0.5,
+      "normalized_pixel_threshold": 0.5
+    },
+    "B_normalization_effect": {
+      "formula": "normalized = clip((x - threshold) / (max - min) + 0.5, 0, 1)",
+      "formula_reproduction_error_image": 2.6020594234843486e-08,
+      "formula_reproduction_error_pixel": 0.0,
+      "tie_stats": {
+        "raw_scores_unique": 117,
+        "norm_scores_unique": 47,
+        "norm_scores_at_0": 0.39316239316239315,
+        "norm_scores_at_1": 0.2222222222222222,
+        "raw_pixels_unique": 65428,
+        "norm_pixels_at_0": 0.9561920166015625,
+        "norm_pixels_at_1": 0.000743507320045406
+      },
+      "frac_same_sort_order": 0.41025641025641024,
+      "metrics_raw": {
+        "image_auroc": 0.9426406926406926,
+        "image_ap": 0.9769626830837396,
+        "pixel_auroc": 0.9047022831928389,
+        "pixel_ap": 0.32793198891102726,
+        "n_pixels": 7667712,
+        "n_anomalous_pixels": 539674
+      },
+      "metrics_postprocessed": {
+        "image_auroc": 0.8849206349206349,
+        "image_ap": 0.939942975085144,
+        "pixel_auroc": 0.588945511473128,
+        "pixel_ap": 0.13338128290059365,
+        "n_pixels": 7667712,
+        "n_anomalous_pixels": 539674
+      },
+      "delta_image_auroc": -0.05772005772005773,
+      "delta_pixel_auroc": -0.31575677171971084
+    },
+    "C_missing_normalization": {
+      "metrics_unnormalized_input": {
+        "image_auroc": 0.8441558441558441,
+        "image_ap": 0.9403087816196594,
+        "pixel_auroc": 0.8387444171299817,
+        "pixel_ap": 0.2762332526346132,
+        "n_pixels": 7667712,
+        "n_anomalous_pixels": 539674
+      },
+      "metrics_normalized_input": {
+        "image_auroc": 0.9426406926406926,
+        "image_ap": 0.9769626830837396,
+        "pixel_auroc": 0.9047022831928389,
+        "pixel_ap": 0.32793198891102726,
+        "n_pixels": 7667712,
+        "n_anomalous_pixels": 539674
+      },
+      "delta_image_auroc": 0.09848484848484851,
+      "delta_pixel_auroc": 0.06595786606285714
+    }
+  }
+}

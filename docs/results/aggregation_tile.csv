@@ -1,0 +1,6 @@
+dataset,config,rule,n,n_normal,n_defect,image_auroc,image_ap,threshold,fpr_normal,recall_defect,note
+mvtec_ad_tile,256x256,max,117,33,84,0.942641,0.976966,,,,验证集热力图未保存，无阈值指标
+mvtec_ad_tile,256x256,top1,117,33,84,0.970779,0.988425,,,,验证集热力图未保存，无阈值指标
+mvtec_ad_tile,256x256,top5,117,33,84,0.984127,0.994238,,,,验证集热力图未保存，无阈值指标
+mvtec_ad_tile,256x256,p99,117,33,84,0.981602,0.992852,,,,验证集热力图未保存，无阈值指标
+mvtec_ad_tile,256x256,gmean,117,33,84,0.979798,0.993731,,,,验证集热力图未保存，无阈值指标

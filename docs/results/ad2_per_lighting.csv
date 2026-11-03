@@ -1,0 +1,7 @@
+lighting,n,n_normal,n_defect,score_mean_normal,score_mean_defect,within_auroc,recall,fpr
+regular,19,4,15,23.49,33.9,0.867,0.133,0.0
+overexposed,19,4,15,24.57,33.1,0.833,0.133,0.0
+underexposed,19,4,15,23.65,34.22,0.917,0.267,0.0
+shift_1,19,4,15,38.37,42.44,0.7,0.533,0.0
+shift_2,19,4,15,44.7,47.14,0.65,1.0,1.0
+shift_3,19,4,15,33.6,38.83,0.733,0.267,0.0

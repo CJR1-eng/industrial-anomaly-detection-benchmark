@@ -1,0 +1,48 @@
+# PaDiM @ MVTec AD / tile —— Day1 调试基线配置
+# 说明：本配置仅用于跑通链路，不作为论文最终结果。
+experiment:
+  name: padim_tile_day1
+  seed: 42
+  notes: "Day1 调试基线；resnet18 + 256x256；无增强；阈值来自训练集内验证划分"
+
+# 运行期环境变量（anomalib 2.x 通过 timm 从 HuggingFace 拉取骨干权重，
+# 国内直连 huggingface.co 会 502，故指定镜像；权重本身仍是官方 timm 仓库）
+env:
+  HF_ENDPOINT: https://hf-mirror.com
+
+data:
+  # 官方 MVTec AD tile 解压后的根目录（其下应直接是 tile/）
+  root: datasets/raw/mvtec_ad
+  category: tile
+  # anomalib MVTecAD 默认将图像 resize 到 256x256
+  train_batch_size: 8      # 4GB 显存下的保守取值
+  eval_batch_size: 8
+  num_workers: 2           # Windows 下不宜过大
+  # 关键：默认 SAME_AS_TEST 会用测试集做验证 -> 阈值在测试集上选，存在泄漏
+  val_split_mode: from_train
+  val_split_ratio: 0.2
+  test_split_mode: from_dir
+
+model:
+  name: padim
+  backbone: resnet18
+  layers: [layer1, layer2, layer3]
+  pre_trained: true
+  n_features: 100          # 论文给定值（resnet18 -> 100）
+
+engine:
+  accelerator: gpu
+  devices: 1
+  precision: 32            # PaDiM 需协方差求逆，fp16 不稳定，用 fp32
+  max_epochs: 1
+
+output:
+  runs_dir: results/runs
+  figures_dir: figures/day1_padim_tile
+  metrics_dir: results/metrics
+  logs_dir: results/logs
+
+visualization:
+  num_normal_fp: 3         # 正常样本误报案例数
+  num_defect_hit: 3        # 异常样本正确定位案例数
+  num_defect_miss: 3       # 异常样本漏检案例数

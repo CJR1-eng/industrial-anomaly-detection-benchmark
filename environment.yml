@@ -1,0 +1,30 @@
+# Conda environment. Equivalent to requirements.txt + requirements-torch.txt,
+# but conda resolves PyTorch (including the CUDA runtime) for you.
+#
+#   conda env create -f environment.yml
+#   conda activate idad-bench
+#
+# Not verified on this machine (the reported runs used a plain venv with a
+# download.pytorch.org wheel); treat it as a convenience path, not the
+# reference environment.
+
+name: idad-bench
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.12
+  - pip
+  - pytorch>=2.6
+  - torchvision
+  - numpy>=1.26
+  - scipy
+  - scikit-learn
+  - pandas
+  - matplotlib
+  - pillow
+  - pyyaml
+  - psutil
+  - pytest
+  - pip:
+      - anomalib==2.7.0

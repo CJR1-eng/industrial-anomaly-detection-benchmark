@@ -1,0 +1,6 @@
+variant,category,mode,preproc,n_test,n_test_normal,n_test_defect,image_auroc,image_ap,pixel_auroc,pixel_ap,pixel_aupro,pixel_auroc_per_image,fpr_normal,recall_defect,precision,f1,threshold_image
+squash_baseline,sheet_metal,squash,none,114,24,90,0.693056,0.892937,0.813771,0.163756,0.166933,0.637236,0.166667,0.388889,0.897436,0.542636,40.997276
+aspect,sheet_metal,aspect,none,114,24,90,0.547222,0.828393,0.894117,0.040741,0.443700,0.797326,0.208333,0.222222,0.800000,0.347826,76.382540
+brightness_norm,sheet_metal,squash,brightness_norm,114,24,90,0.667130,0.888301,0.809619,0.169692,0.169255,0.633752,0.125000,0.300000,0.900000,0.450000,40.210446
+clahe,sheet_metal,squash,clahe,114,24,90,0.558333,0.827323,0.787363,0.100845,0.097528,0.601543,0.500000,0.511111,0.793103,0.621622,48.129083
+gamma_fixed,sheet_metal,squash,gamma_fixed,114,24,90,0.648148,0.871794,0.804605,0.152786,0.158979,0.626657,0.333333,0.444444,0.833333,0.579710,40.300532

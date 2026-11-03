@@ -1,0 +1,14 @@
+# CUDA build of PyTorch. Install this BEFORE requirements.txt.
+#
+# The index line below is scoped to this file, so `pip install -r requirements.txt`
+# is unaffected. Only the cu126 build was verified; swap the index URL for another
+# CUDA toolkit if your driver requires it (see pytorch.org/get-started/locally).
+#
+# CPU-only users: delete the two lines below and install
+#   torch==2.14.1 torchvision==0.29.1
+# from PyPI instead. Everything except the GPU timings runs on CPU.
+
+--index-url https://download.pytorch.org/whl/cu126
+
+torch==2.14.1
+torchvision==0.29.1
